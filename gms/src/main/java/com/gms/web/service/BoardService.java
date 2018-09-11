@@ -17,5 +17,5 @@ public interface BoardService  {
 		public ArticleDTO retrieve(ArticleDTO p);
 		public int count(Map<?,?>p);
 		public void modify(ArticleDTO p);
-		public boolean remove(ArticleDTO p);
+		public boolean remove(ArticleDTO p);//
 	}
