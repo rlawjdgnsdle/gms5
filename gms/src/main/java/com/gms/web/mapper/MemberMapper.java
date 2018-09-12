@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gms.web.domain.MemberDTO;
 
-@Repository
+@Repository 
 public interface MemberMapper {
 	public void add(MemberDTO p);
 	public List<?> selectList(Map<?,?>p);
@@ -17,5 +17,6 @@ public interface MemberMapper {
 	public void update(MemberDTO p);
 	public void delete(MemberDTO p);
 	public MemberDTO login(MemberDTO p);
-
+	public String exist(String p);
+	
 }

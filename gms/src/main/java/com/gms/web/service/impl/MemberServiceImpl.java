@@ -36,11 +36,7 @@ public class MemberServiceImpl implements MemberService {
 
 		p.setAge(String.valueOf(Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date())) + 1
 				- Integer.parseInt(("19" + (ssn.substring(0, 2))))));
-		/*
-		 * p.setAge(String.valueOf( Integer.parseInt(new
-		 * SimpleDateFormat("yyyy").format(new Date()))+ 1 -
-		 * (Integer.parseInt(ssn.substring(0,2)) + 1900)));
-		 */
+		
 		p.setGender(gender);
 		memberDAO.add(p);
 

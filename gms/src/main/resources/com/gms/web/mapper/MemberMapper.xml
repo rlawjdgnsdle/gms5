@@ -11,6 +11,11 @@
 		SELECT MEMID, TEAMID, MEMNAME, AGE, ROLL, PASS, SSN, GENDER FROM MEMBER
 		WHERE MEMID LIKE #{memid} AND PASS LIKE #{pass}
 	</select>
+	<select id="exist" resultType="string">
+		SELECT MEMID
+		FROM MEMBER
+		WHERE MEMID LIKE #{memid}
+	</select>
 	<insert id="add" >
 		INSERT INTO MEMBER (MEMID, PASS, MEMNAME, AGE, SSN, TEAMID, ROLL, GENDER, SUBJECT)
 		VALUES (#{memid},#{pass},#{memname},#{age},#{ssn},#{teamid},#{roll},#{gender},#{subject})
@@ -21,4 +26,5 @@
 	<delete id="delete" >
 		DELETE FROM MEMBER WHERE MEMID LIKE #{memid} AND PASS LIKE #{pass}
 	</delete>
+	
 </mapper>

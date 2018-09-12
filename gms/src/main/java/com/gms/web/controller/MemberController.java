@@ -3,12 +3,15 @@ package com.gms.web.controller;
 import java.util.HashMap;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.internal.Function;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.gms.web.cmm.Util;
 import com.gms.web.domain.MemberDTO;
+import com.gms.web.mapper.MemberMapper;
 import com.gms.web.service.MemberService;
 
 @Controller
@@ -28,7 +33,7 @@ public class MemberController {
 	static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Autowired MemberDTO member;
 	@Autowired MemberService memberSerivce;
-
+	@Autowired MemberMapper memberMapper;
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void add(@ModelAttribute("member") MemberDTO member) {
 		System.out.println("name is " + member.getMemname());
@@ -92,11 +97,29 @@ public class MemberController {
 	public String login(Model model,
 			@ModelAttribute("member") MemberDTO member) {					
 		logger.info("\n --------- MemberController {} !!--------", "login()");
+		Predicate<String> p = s-> s.equals("");
+		Predicate<String> notP = p.negate();
+		String view = "login failed";
+		if(notP.test(memberMapper.exist(member.getMemid()))) {
+			Function<MemberDTO,MemberDTO> f = (t)-> {
+				return memberMapper.login(t);
+			};
+			view = (notP.equals((f.apply(member)))) ? 
+					"login_success" : 
+					"login failed" ;
+						
+		}
+//		member = (Predicate.isEqual("login_success").test(view)) ?
+//				memberMapper.selectOne(member.getMemid()):
+////				new Member();
+				Util.Log.accept(member.toString());
+				return view;
 		
-		MemberDTO m1 = memberSerivce.login(member);
-		if(m1!=null) model.addAttribute("user", m1); 
-		return (m1==null)?"login_fail":"login_success";
 		
+//		MemberDTO m1 = memberSerivce.login(member);
+//		if(m1!=null) model.addAttribute("user", m1); 
+//		return (m1==null)?"login_fail":"login_success";//
+//		
 	}
 
 	@RequestMapping("/logout")

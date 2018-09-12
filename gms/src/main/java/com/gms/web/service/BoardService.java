@@ -9,8 +9,6 @@ import com.gms.web.domain.ArticleDTO;
 import com.gms.web.domain.MemberDTO;
 @Component
 public interface BoardService  {
-	
-		
 		public void add(ArticleDTO p);
 		public List<?> list(Map<?,?>p);
 		public List<?> search(Map<?,?>p);
