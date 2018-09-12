@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gms.web.domain.MemberDTO;
 
-@Repository 
+@Repository // 기능을 앞으로 가져 올 Mapper
 public interface MemberMapper {
 	public void add(MemberDTO p);
 	public List<?> selectList(Map<?,?>p);
@@ -20,3 +20,4 @@ public interface MemberMapper {
 	public String exist(String p);
 	
 }
+//

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -93,7 +94,7 @@ public class MemberController {
 		return "redirect:/";
 }
 	
-	@RequestMapping("/login")
+	@PostMapping("/login")
 	public String login(Model model,
 			@ModelAttribute("member") MemberDTO member) {					
 		logger.info("\n --------- MemberController {} !!--------", "login()");
@@ -109,10 +110,10 @@ public class MemberController {
 					"login failed" ;
 						
 		}
-//		member = (Predicate.isEqual("login_success").test(view)) ?
+	//	member = (Predicate.isEqual("login_success").test(view)) ?
 //				memberMapper.selectOne(member.getMemid()):
 ////				new Member();
-				Util.Log.accept(member.toString());
+	//			Util.Log.accept(member.toString());
 				return view;
 		
 		

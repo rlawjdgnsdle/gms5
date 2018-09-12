@@ -18,4 +18,5 @@ public interface MemberService {
 	public void remove(MemberDTO p);
 	public MemberDTO login(MemberDTO p);
 	
+	
 }
