@@ -11,14 +11,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="${context}/resources/js/app.js"></script>
+<%-- <script src="${context}/resources/js/router.js"></script> --%>
 </head>
 <body>
+<div id="wrapper"></div>
       <footer>
-        <p>&copy; Company 2017</p>
+        <p><font size="3">Main</font></p>
       </footer>
       <script>
-   app.init('${context}');
-   app.setMember('${member}');
+  app.init('${context}');
+   /* app.setMember('${member}');  */
+   alert('${context}');
       </script>
       
 </body>

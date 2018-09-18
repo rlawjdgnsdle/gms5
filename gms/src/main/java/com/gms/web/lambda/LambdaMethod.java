@@ -17,9 +17,11 @@ public class LambdaMethod {
 		System.out.println("a : " + a);
 
 		// Consumer<String> c = s -> System.out.println(s);
-		// c.accept("Hello Lambda!!");
+		// c.accept("Hello Lambda!!");   fsfse	
 		// ↓↓↓↓↓↓ ↓↓↓↓↓↓ 
 		Consumer<String> c = System.out::println;
 		c.accept("Hello Lambda!!");
+		
+
 	}
 }

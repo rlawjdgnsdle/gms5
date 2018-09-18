@@ -9,7 +9,7 @@
 	</div> <!-- header end -->
 	<div id="content-box">
 	<c:choose>
-		<c:when test="${pagename eq 'add'}">
+		<%-- <c:when test="${pagename eq 'add'}">
 			<jsp:include page="add.jsp"/>
 		</c:when>
 		<c:when test="${pagename eq 'login'}">
@@ -23,7 +23,7 @@
 		</c:when>
 		<c:otherwise>
 			<jsp:include page="retrieve.jsp"/>
-		</c:otherwise>
+		</c:otherwise> --%>
 	</c:choose>
 	</div>
 	<div id="footer">주소</div>

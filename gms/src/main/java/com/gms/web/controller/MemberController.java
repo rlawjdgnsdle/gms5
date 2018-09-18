@@ -29,7 +29,7 @@ import com.gms.web.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
-@SessionAttributes("user")
+
 public class MemberController {
 	static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	@Autowired MemberDTO member;
@@ -84,7 +84,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
-	public String remove(HttpSession session,
+	public String remove(
 			@ModelAttribute("member") MemberDTO member,
 			@ModelAttribute("user") MemberDTO user) {
 		member.setMemid(user.getMemid());
@@ -123,12 +123,12 @@ public class MemberController {
 //		
 	}
 
-	@RequestMapping("/logout")
-	public String logout(SessionStatus sessionStatus) {
-		sessionStatus.setComplete();
-		logger.info("\n --------- MemberController {} !!--------", "logout()");
-		return "redirect:/";
-	}
+//	@RequestMapping("/logout")
+//	public String logout(SessionStatus sessionStatus) {
+//		sessionStatus.setComplete();
+//		logger.info("\n --------- MemberController {} !!--------", "logout()");
+//		return "redirect:/";
+//	}
 
 	@RequestMapping("/fileUpload")
 	public void fileUpload() {
