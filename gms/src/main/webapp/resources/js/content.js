@@ -1,5 +1,5 @@
 function contentUI(){
-	return '<div class="bs-example" data-example-id="thumbnails-with-custom-content">'
+	return '<div id="content" class="bs-example" data-example-id="thumbnails-with-custom-content">'
     +'<div class="row">'
       +'<div class="col-sm-6 col-md-4">'
         +'<div class="thumbnail">'

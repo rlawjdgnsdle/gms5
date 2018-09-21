@@ -14,3 +14,7 @@ public class Util {
 	public static Predicate<String> predi = pred.negate();
 	public static Function<HttpServletRequest,String> ctx = HttpServletRequest::getContextPath;
 	}
+
+
+
+

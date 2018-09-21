@@ -3,8 +3,8 @@ var ui={
 	div : x=>{return $('<div/>').attr(x);},
 	
 	span : x=>{return $('<span/>').attr(x);},
-	anchor : x=>{  
-		return $('<a/>').attr({href : '#'}).html(x.txt);},
+	anchor : x=>{	// ui.anchor({txt:'',id=''});
+		return $('<a/>').attr({href : '#',id=x.id}).html(x.txt);},
 	ul : x=>{ 
 		let ul = $('<ul/>');
 		for(var i=0;i<x.len;i++){
@@ -69,7 +69,7 @@ var ui={
 		return p;
 	},
 	inputGroupPrepend : x =>{
-		return 	'<div class="input-group mb-3">'
+		return '<div class="input-group mb-3">'
 		  +'<div class="input-group-prepend">'
 		  +'  <span class="input-group-text" id="basic-addon1">@</span> '
 		  +'</div>'
