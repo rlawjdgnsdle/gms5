@@ -13,7 +13,9 @@ public class Util {
 	public static Predicate<String> pred = s-> s.equals("");
 	public static Predicate<String> predi = pred.negate();
 	public static Function<HttpServletRequest,String> ctx = HttpServletRequest::getContextPath;
-	}
+	public static Predicate<Object> oNull = x -> x == null;
+	public static Predicate<Object> notONull = oNull.negate();
+}
 
 
 

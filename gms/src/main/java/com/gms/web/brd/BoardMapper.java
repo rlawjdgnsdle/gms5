@@ -4,18 +4,20 @@ import java.util.List;
 
 import com.gms.web.cmm.Criteria;
 import com.gms.web.cmm.SearchCriteria;
+import com.gms.web.page.Pagination;
 
 public interface BoardMapper {
-
+//	throws Exception; 이거 옛날 스타일. 안써도 무관함
+	
   public void create(Board vo) throws Exception;
   public Board read(Integer bno) throws Exception;
   public void update(Board vo) throws Exception;
   public void delete(Integer bno) throws Exception;
-  public List<Board> listAll() throws Exception;
+  public List<Board> listAll(Pagination p);
   public List<Board> listPage(int page) throws Exception;
   public List<Board> listCriteria(Criteria cri) throws Exception;
   public int countPaging(Criteria cri) throws Exception;
-  
+  public int countAll();
   //use for dynamic sql
   
   public List<Board> listSearch(SearchCriteria cri)throws Exception;

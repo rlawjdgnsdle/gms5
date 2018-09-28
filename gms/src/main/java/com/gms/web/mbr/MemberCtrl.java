@@ -50,29 +50,50 @@ public class MemberCtrl {
 	
 	
 	@PostMapping("/login")
-	public @ResponseBody Map<String,Object> login(@RequestBody Member pm) {
-		logger.info("\n MemberCtrl ::::: {}","login()");
-		Map<String,Object> rm = new HashMap<>();
-		Util.Log.accept("넘어온 로그인정보: "+pm);
-		String pwValid = "WRONG";
-		String idValid = "WRONG";
-		if(mbrMap.count(pm)!=0) {
-			idValid = "CORRECT";
-			Util.Log.accept("ID 유효성체크결과 : "+idValid);
-			Function<Member,Member> f = (t)->{
+	public @ResponseBody Member login(@RequestBody Member mem) {
+		Util.Log.accept("넘어온 아이디"+mem.getMemberId());
+		Util.Log.accept("넘어온 비번"+mem.getPass());
+		HashMap<String,Object> rmap = new HashMap<>();
+		
+		Member m = null;
+		if(Util.notONull.test(mbrMap.get(mem))) {
+			Function<Member,Member> f = (t) -> {
 				return mbrMap.get(t);
 			};
-			mbr = f.apply(pm);
-			pwValid = (mbr != null) ?"CORRECT":"WRONG";
-			mbr = (mbr != null) ?mbr:new Member();
-			Util.Log.accept("PW 유효성체크결과 : "+pwValid);
+			m = f.apply(mem);
+		}else {
+			
 		}
-		Util.Log.accept("ID 유효성체크결과 2: "+idValid);
-		Util.Log.accept("PW 유효성체크결과 2: "+pwValid);
-		Util.Log.accept("MBR 유효성체크결과 2: "+mbr.toString());
-		rm.put("ID", idValid);
-		rm.put("PW", pwValid);
-		rm.put("MBR", mbr);
-		return rm;
+		rmap.put("member", m);
+		
+return m;
+		
+		
+		
+		
+		
+		//		logger.info("\n MemberCtrl ::::: {}","login()");
+//		Map<String,Object> rm = new HashMap<>();
+//		Util.Log.accept("넘어온 로그인정보: "+pm);
+//		String pwValid = "WRONG";
+//		String idValid = "WRONG";
+//		if(mbrMap.count(pm)!=0) {
+//			idValid = "CORRECT";
+//			Util.Log.accept("ID 유효성체크결과 : "+idValid);
+//			Function<Member,Member> f = (t)->{
+//				return mbrMap.get(t);
+//			};
+//			mbr = f.apply(pm);
+//			pwValid = (mbr != null) ?"CORRECT":"WRONG";
+//			mbr = (mbr != null) ?mbr:new Member();
+//			Util.Log.accept("PW 유효성체크결과 : "+pwValid);
+//		}
+//		Util.Log.accept("ID 유효성체크결과 2: "+idValid);
+//		Util.Log.accept("PW 유효성체크결과 2: "+pwValid);
+//		Util.Log.accept("MBR 유효성체크결과 2: "+mbr.toString());
+//		rm.put("ID", idValid);
+//		rm.put("PW", pwValid);
+//		rm.put("MBR", mbr);
+//		return rm;
 	}
 }

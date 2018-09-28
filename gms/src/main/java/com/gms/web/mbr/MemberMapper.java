@@ -10,6 +10,7 @@ public interface MemberMapper {
 	public void post(Member p);
 	public List<?> list(Map<?,?>p);
 	public Member get(Member p);
+	
 	public Integer count(Member p);
 	public void put(Member p);
 	public void delete(Member p);

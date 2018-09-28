@@ -4,47 +4,48 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 객체가 되기 위해선 반드시 id 를 필요로 함 따라서 마이바티스 내부의 객체들은 반드시 id를 갖춤 -->
 <mapper namespace="com.gms.web.mbr.MemberMapper">
-	<select id="selectOne" resultType="com.gms.web.mbr.Member">
-		SELECT * FROM MEMBER WHERE MEMID LIKE #{memid}
-	</select>
-	<select id="get" resultType="com.gms.web.mbr.Member">
-		SELECT MEMID, TEAMID, MEMNAME, AGE, ROLL, PASS, SSN, GENDER
-	FROM MEMBER
-	<where>
-		<if test=" memid != null and memid != '' ">
-			MEMID LIKE #{memid}
-		</if>
-		<if test=" pass != null and pass != '' ">
-		AND PASS LIKE #{pass}
-		</if>
-	</where>
-	</select>
-	<select  id="count" resultType="Integer">
-		SELECT COUNT(*) AS COUNT FROM MEMBER
-	<where>
-			<if test=" memid != null and memid != '' ">
-				MEMID LIKE #{memid}
-			</if>
-			
+  <select id="get" resultType="com.gms.web.mbr.Member">
+    SELECT * FROM MEMBER 
+    <where>
+    	<if test="memberId != null and memberId !=''">
+    		MEMBERID LIKE #{memberId}
+    	</if>
+    	<if test="pass != null and pass !=''">
+    		AND PASS LIKE #{pass}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="count" resultType="int">
+  	SELECT COUNT(*) FROM MEMBER
+  	<where>
+	  	<if test=" memberId != null and memberId != '' ">
+	  		MEMBERID LIKE #{memberId}
+	  	</if>
 </where>
-	</select>
-	<select id="exist" resultType="string">
-		SELECT MEMID
-		FROM MEMBER
-		WHERE MEMID LIKE #{memid}
-	</select>
-	
-	<insert id="post" >
-		INSERT INTO MEMBER 
-		(MEMID, PASS, MEMNAME, AGE, SSN, TEAMID, ROLL, GENDER, SUBJECT)
-		VALUES (#{memid},#{pass},#{memname},#{age},#{ssn},#{teamid},#{roll},#{gender},#{subject})
-	</insert>
-	
-	<update id="put" >
-	UPDATE MEMBER SET PASS = #{pass} , TEAMID = #{teamid}, ROLL = #{roll} WHERE MEMID LIKE #{memid};
-	</update>
-	<delete id="delete" >
-		DELETE FROM MEMBER WHERE MEMID LIKE #{memid} AND PASS LIKE #{pass}
-	</delete>
-	
+  	
+  </select>
+  
+  <insert id="post">
+  	INSERT MEMBER
+  	(MEMBERID,PASS,TEAMID,ROLL,NAME,SSN,AGE,GENDER,SUBJECT)
+  	SELECT
+  	#{memberId},#{pass},#{teamId},#{roll},#{name},#{ssn},#{age},#{gender},#{subject}
+  	FROM DUAL
+  	WHERE NOT EXISTS (SELECT MEMBERID FROM MEMBER WHERE MEMBERID LIKE #{memberId})
+  </insert>
+
+  <update id="put">
+  	UPDATE MEMBER 
+  	SET 
+  	PASS = #{pass},
+  	ROLL = #{roll},
+  	TEAMID = #{teamId}
+  	WHERE MEMBERID LIKE #{memberId} 
+  </update>
+  <delete id="delete">
+  	DELETE FROM MEMBER
+  	WHERE MEMBERID LIKE #{memberId}
+  	AND PASS LIKE #{pass}
+  </delete>
 </mapper>
